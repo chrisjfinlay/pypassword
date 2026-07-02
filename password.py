@@ -30,7 +30,7 @@ else:
             password.append(random.choice(upper_letters))
         for symbol in range(0, nr_symbols):
             password.append(random.choice(symbols))
-        for number in range (0, nr_symbols):
+        for number in range (0, nr_numbers):
             password.append(random.choice(numbers))
         random.shuffle(password)
         final_password = "".join(password)
