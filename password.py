@@ -11,7 +11,7 @@ def is_valid_value(user_input):
     try:
         return_value = int(user_input)
         return True, return_value
-    except TypeError, ValueError:
+    except (TypeError, ValueError):
         print("Non-integer detected, re-enter selection.")
         return False, 0
 
