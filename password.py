@@ -6,10 +6,26 @@ lower_letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm'
 upper_letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
+
+def is_valid_value(user_input):
+    try:
+        return_value = int(user_input)
+        return True, return_value
+    except TypeError, ValueError:
+        print("Non-integer detected, re-enter selection.")
+        return False, 0
+
 print("Welcome to the PyPassword Generator!")
-nr_letters = int(input("How many letters would you like in your password?\n(A random amount of them will be selected as UPPER CASE)\n"))
-nr_symbols = int(input(f"How many symbols would you like?\n"))
-nr_numbers = int(input(f"How many numbers would you like?\n"))
+valid_letters = valid_numbers = valid_symbols = False
+
+while not valid_letters or not valid_numbers or not valid_symbols:
+    nr_letters = input("How many letters would you like in your password?\n"
+                       "(A random amount of them will be selected as UPPER CASE)\n")
+    nr_symbols = input(f"How many symbols would you like?\n")
+    nr_numbers = input(f"How many numbers would you like?\n")
+    valid_letters, nr_letters = is_valid_value(nr_letters)
+    valid_symbols, nr_symbols= is_valid_value(nr_symbols)
+    valid_numbers, nr_numbers = is_valid_value(nr_numbers)
 
 if nr_letters == 0 or nr_symbols == 0 or nr_numbers == 0:
     print("You must choose at least one of each character type to generate a strong password.")
